@@ -21,7 +21,7 @@ export default class MyApp extends App {
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width"
           />
-
+          <link rel="stylesheet" href="/css/homestyle.css"></link>
           <link
             rel="preload"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
