@@ -12,17 +12,6 @@
   "lint-staged": {
     "*.js": "npx eslint --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged",
-      "pre-push": "npm test"
-    }
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "<rootDir>/test/setup.js"
-    ]
-  },
   "dependencies": {
     "appwrite": "^3.0.1",
     "@material-ui/core": "^4.10.2",
