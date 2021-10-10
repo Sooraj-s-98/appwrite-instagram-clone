@@ -31,14 +31,14 @@ You have two options to deploy the front-end and we will cover both of them here
 Follow these instructions to run the demo app locally
 
 ```sh
-$ git clone https://github.com/Sooraj-s-98/appwrite-todo-with-nextjs
-$ cd appwrite-todo-with-nextjs
+$ git clone https://github.com/Sooraj-s-98/appwrite-instagram-clone
+$ cd appwrite-instagram-clone
 ```
 
 
 Now fill your environment variables
 
-![image](https://user-images.githubusercontent.com/52352285/135744323-a4b1a948-4011-4a39-abcd-63b58853555e.png)
+
 
 
 Now run the following commands and you should be good to go 💪🏼
