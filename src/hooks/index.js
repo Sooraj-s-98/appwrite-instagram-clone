@@ -100,5 +100,7 @@ export const useGetUser = () => {
     return () => (didCancel = true);
   }, []);
 
-  return [state, dispatch];
+  return [state, dispatch]; 
 };
+
+

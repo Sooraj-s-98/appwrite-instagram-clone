@@ -45,7 +45,26 @@ let api = {
       .provider()
       .database.updateDocument(collectionId, documentId, data, read, write);
   },
-
+  imageUpload: (image) => {
+    return api
+      .provider()
+      .storage.createFile(image);   
+  },
+  imageView: (fileID) => {
+    return api
+      .provider()
+      .storage.getFileView(fileID);  
+  },
+  createPost: (collectionId,data) => {
+    return api
+      .provider()
+      .database.createDocument(collectionId, data,['*'],['*']);  
+  },
+ //createDocument('[COLLECTION_ID]', {});
+  //listDocuments('[COLLECTION_ID]');
+  listPosts: (collectionId) => {
+    return api.provider().database.listDocuments(collectionId);
+  },
   deleteDocument: (collectionId, documentId) => {
     return api.provider().database.deleteDocument(collectionId, documentId);
   },

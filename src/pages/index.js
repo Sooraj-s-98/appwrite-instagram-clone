@@ -2,7 +2,10 @@ import {useState,useEffect} from 'react';
 import PostComponent from '../component/PostComponent';
 import Router, { useRouter } from "next/router";
 import  { useGetUser } from "../hooks/index";
-import Login from "../component/Login"
+import Login from "../component/Login";
+import CreatePost from '../component/createpost';
+import api from "../api/api";
+import { Server } from "../utils/config";
 
 const Index = () => {
 
@@ -11,14 +14,21 @@ const Index = () => {
   const [tab, setTab]=useState("home")
 
   useEffect(()=>{
+    console.log("login", user)
     if(!user){
       setTab("login")
     }
     else{
       setTab("home")
+      listPosts();
     }
   },[user])
 
+
+  const listPosts=async()=>{
+    const response=await api.listPosts(Server.collectionID);
+    console.log("posts", response)
+  }
   return (
     <>
 
@@ -33,7 +43,7 @@ const Index = () => {
             <div className="nav-items" id="nav-items" >
               <img src="image/home.PNG" className="icon" alt="" />
               <img src="image/messenger.PNG" className="icon" alt="" />
-            <img src="image/add.PNG" className="icon" alt=""   />
+            <img src="image/add.PNG" className="icon" alt=""  onClick={()=> setTab("createpost")} />
               <img src="image/explore.PNG" className="icon" alt="" />
               <img src="image/like.PNG" className="icon" alt="" />
               <div className="icon user-profile"></div>
@@ -128,6 +138,12 @@ const Index = () => {
         tab=="login" &&
         <>
          <Login dispatch={dispatch}/>
+        </>
+      }
+            {
+        tab=="createpost" &&
+        <>
+          <CreatePost />
         </>
       }
     </>
