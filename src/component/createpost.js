@@ -24,7 +24,7 @@ export default function CreatePost() {
   const data = {
     user_name:"sooraj_s",
     comment_count:0,
-    image:"",
+    image:imageURL.href,
     like_count:0,
     user_picture:"image/sooraj.jpg",
   };

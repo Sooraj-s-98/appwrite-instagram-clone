@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PostComponent() {
+export default function PostComponent({postData}) {
     return (
         <div>
             <div className="post" >
@@ -10,12 +10,12 @@ export default function PostComponent() {
                         <div className="profile_img">
                             <img src="image/sooraj.jpg"
                                 alt="" />
-                            <span>sooraj s</span>
+                            <span>{postData.user_name}</span>
                         </div>
                         <i className="fa fa-ellipsis-h"></i>
                     </div>
                     <div className="main_img">
-                        <img src="image/cover 1.png"
+                        <img src={postData.image}
                             alt="" />
                     </div>
                     <div className="footer">
@@ -30,14 +30,14 @@ export default function PostComponent() {
                             </div>
                         </div>
                         <div className="likeCount">
-                            <p>10,890 Likes</p>
+                            <p>{postData.like_count} Likes</p>
                         </div>
                         <div className="content">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis excepturi impedit facere, ad
                                 adipisci, cum veritatis libero ipsam, ex quo quis neque debitis tenetur consequatur?</p>
                         </div>
                         <div className="comments">
-                            <p>View All 1008 Comments</p>
+                            <p>View All {postData.comment_count} Comments</p>
                         </div>
                         <div className="comments_box">
                             <div className="icon">😊</div>

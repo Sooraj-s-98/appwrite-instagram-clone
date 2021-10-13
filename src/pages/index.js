@@ -11,7 +11,8 @@ const Index = () => {
 
 
   const [{ user, isLoading, isError }, dispatch] = useGetUser();
-  const [tab, setTab]=useState("home")
+  const [tab, setTab]=useState("home");
+  const [postList,setPostList]=useState([])
 
   useEffect(()=>{
     console.log("login", user)
@@ -27,6 +28,7 @@ const Index = () => {
 
   const listPosts=async()=>{
     const response=await api.listPosts(Server.collectionID);
+    setPostList(response.documents)
     console.log("posts", response)
   }
   return (
@@ -87,8 +89,11 @@ const Index = () => {
                 </div>
 
               </div>
-
-                <PostComponent/>
+                {postList.map((postData,i)=>(
+                  <div key={i}>
+                         <PostComponent postData={postData}/>
+                  </div>
+                ))}
 
             </div>
 
