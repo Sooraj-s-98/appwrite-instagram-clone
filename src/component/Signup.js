@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import api from "../api/api";
 import { FetchState } from "../hooks/index";
 
-export default function Signup({ dispatch }) {
+export default function Signup({setRegister, dispatch }) {
 
   const [userName, setUserName] = useState();
   const [name, setName] = useState();
@@ -87,7 +87,7 @@ export default function Signup({ dispatch }) {
         </div>
         <div className="signup__area">
           <p>
-            Have an account <a to="/">Log in</a>
+            Have an account <a onClick={()=>setRegister(false)}>Log in</a>
           </p>
         </div>
       </div>
