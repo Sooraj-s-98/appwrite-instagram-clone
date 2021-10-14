@@ -3,8 +3,12 @@
 ![logo]( public/image/built-with-appwrite.svg "Logo")
 
 ## Screenshot
-![screenshot](https://user-images.githubusercontent.com/87564100/136693945-1178a6ff-12f0-49dc-bdf3-9aad76305f62.jpg)
 
+![screenshotsignup](https://user-images.githubusercontent.com/52352285/137251397-19adaa5f-d910-47dd-b3f7-efd14c3c40b9.png)
+
+![screenshotlogin](https://user-images.githubusercontent.com/52352285/137251467-cc22ac27-ddd6-4f49-81ba-1a49ee5833e2.png)
+
+![screenshot home](https://user-images.githubusercontent.com/52352285/137251350-ee7cf45e-c21b-4513-a2a5-8cf45bcd4bd8.png)
 
 ## 🎬 Getting Started!
 
@@ -38,7 +42,7 @@ $ cd appwrite-instagram-clone
 
 Now fill your environment variables
 
-
+![image](https://user-images.githubusercontent.com/52352285/137251997-70e929d0-d6d9-4d6f-af90-094819b4c456.png)
 
 
 Now run the following commands and you should be good to go 💪🏼
@@ -47,3 +51,9 @@ Now run the following commands and you should be good to go 💪🏼
 $ npm install
 $ npm run dev
 ```
+
+
+## Thanks
+
+Glad to see here! Show some love by [starring](https://github.com/Sooraj-s-98/appwrite-instagram-clone/) this repository. 
+
