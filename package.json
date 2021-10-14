@@ -6,6 +6,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "prod_start": "NODE_ENV=production node server.js",
     "lint-staged": "npx lint-staged",
     "lint": "npx eslint ./src"
   },
