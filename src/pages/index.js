@@ -6,6 +6,7 @@ import Login from "../component/Login";
 import CreatePost from '../component/createpost';
 import api from "../api/api";
 import { Server } from "../utils/config";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Index = () => {
 
@@ -13,6 +14,8 @@ const Index = () => {
   const [{ user, isLoading, isError }, dispatch] = useGetUser();
   const [tab, setTab]=useState("home");
   const [postList,setPostList]=useState([])
+  const [pageNumber,setPageNumber]=useState(0);
+  const [hasmore,setHasmore]=useState(true);
 
   useEffect(()=>{
     console.log("login", user)
@@ -21,15 +24,19 @@ const Index = () => {
     }
     else{
       setTab("home")
-      listPosts();
     }
   },[user])
 
 
   const listPosts=async()=>{
-    const response=await api.listPosts(Server.collectionID);
-    setPostList(response.documents)
-    console.log("posts", response)
+    const response=await api.listPosts(Server.collectionID,[],10,pageNumber);
+    if(response.documents.length==0){
+      setHasmore(false)
+    }
+    else{
+      setPostList(postList.concat(response.documents))
+    }
+    console.log("posts",response.documents)
   }
   return (
     <>
@@ -89,11 +96,27 @@ const Index = () => {
                 </div>
 
               </div>
-                {postList.map((postData,i)=>(
+
+              <InfiniteScroll
+  dataLength={postList.length} //This is important field to render the next data
+  next={()=>{
+    setPageNumber(old=>old+10);
+    listPosts();
+  }}
+  hasMore={hasmore}
+  loader={<h4>Loading...</h4>}
+  endMessage={
+    <p style={{ textAlign: 'center' }}>
+      <b>Yay! You have seen it all</b>
+    </p>
+  }
+>
+{postList.map((postData,i)=>(
                   <div key={i}>
                          <PostComponent postData={postData}/>
                   </div>
                 ))}
+</InfiniteScroll>
 
             </div>
 
