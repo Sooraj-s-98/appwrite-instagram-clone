@@ -8,7 +8,7 @@ export default function PostComponent({postData}) {
                 <div className="container">
                     <div className="top_bar">
                         <div className="profile_img">
-                            <img src="image/sooraj.jpg"
+                            <img src={postData.user_picture}
                                 alt="" />
                             <span>{postData.user_name}</span>
                         </div>

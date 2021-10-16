@@ -19,21 +19,19 @@ export default function CreatePost() {
 
      const UploadPost=async()=>{
 
-  const response= await api.imageUpload(imageUrl);
+  const response= await api.imageUpload(imageUrl,  [`*`],
+  [`user:${user["$id"]}`]);
   const imageURL=await api.imageView(response["$id"])
   const data = {
-    user_name:"sooraj_s",
-    comment_count:0,
+    user_name:user.name,
     image:imageURL.href,
-    like_count:0,
-    user_picture:"image/sooraj.jpg",
+    user_picture:user.prefs.user_picture,
   };
   const postresponse=await api.createPost(Server.collectionID,data,
   [`*`],
   [`user:${user["$id"]}`]
   )
-//    const rePost=await api.listPosts(Server.collectionID)
-// console.log("Server.collectionID",Server.collectionID )
+
      }
     return (
         <div>
