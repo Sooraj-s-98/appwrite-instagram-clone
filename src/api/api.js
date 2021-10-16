@@ -22,6 +22,10 @@ let api = {
     return api.provider().account.get();
   },
 
+  UpdateAccount: (data) => {
+    return api.provider().account.updatePrefs(data);
+  },
+
   createSession: (email, password) => {
     return api.provider().account.createSession(email, password);
   },
@@ -45,21 +49,23 @@ let api = {
       .provider()
       .database.updateDocument(collectionId, documentId, data, read, write);
   },
-  imageUpload: (image) => {
+  imageUpload: (image,read,write) => {
     return api
       .provider()
-      .storage.createFile(image);   
+      .storage.createFile(image,read,write);   
   },
   imageView: (fileID) => {
     return api
       .provider()
       .storage.getFileView(fileID);  
   },
-  createPost: (collectionId,data) => {
+  createPost: (collectionId,data,read, write) => {
     return api
       .provider()
-      .database.createDocument(collectionId, data,['*'],['*']);  
+      .database.createDocument(collectionId, data,read,write);  
   },
+  // [`user:${user["$id"]}`],
+  // [`user:${user["$id"]}`]
  //createDocument('[COLLECTION_ID]', {});
   //listDocuments('[COLLECTION_ID]');
   listPosts: (collectionId) => {
