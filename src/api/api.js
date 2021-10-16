@@ -68,8 +68,8 @@ let api = {
   // [`user:${user["$id"]}`]
  //createDocument('[COLLECTION_ID]', {});
   //listDocuments('[COLLECTION_ID]');
-  listPosts: (collectionId) => {
-    return api.provider().database.listDocuments(collectionId);
+  listPosts: (collectionId, filters=[],limit=10, offset=0) => {
+    return api.provider().database.listDocuments(collectionId, filters,limit, offset);
   },
   deleteDocument: (collectionId, documentId) => {
     return api.provider().database.deleteDocument(collectionId, documentId);
