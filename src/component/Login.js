@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api/api";
-import SignUp from "./SignUp";
+import SignUp from "./Signup";
 import { FetchState } from "../hooks/index";
 
 const Login = ({ dispatch }) => {
