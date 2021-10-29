@@ -24,11 +24,13 @@ const Index = () => {
     }
     else{
       setTab("home")
+      listPosts();
     }
   },[user])
 
 
   const listPosts=async()=>{
+    try{
     const response=await api.listPosts(Server.collectionID,[],10,pageNumber);
     if(response.documents.length==0){
       setHasmore(false)
@@ -37,6 +39,10 @@ const Index = () => {
       setPostList(postList.concat(response.documents))
     }
     console.log("posts",response.documents)
+  }
+  catch(e){
+    console.log("postsfailed")
+  }
   }
   return (
     <>
