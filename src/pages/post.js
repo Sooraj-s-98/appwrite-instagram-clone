@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         opengraphTitile:"",
-        opengraphImage:data.data.image,
+        opengraphImage:data.data.profile.picture,
         opengraphurl:"",
         opengraphdescription:data.data.description ,
       }, // will be passed to the page component as props
