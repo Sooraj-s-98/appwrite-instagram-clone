@@ -7,6 +7,7 @@ export default function CreatePost() {
   const imageInput = useRef(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [imagePreview, setimagePreview] = useState(null)
+  const[ comprcessedFile,  setCompressedFile]=useState(null)
   const [{ user, isLoading, isError }, dispatch] = useGetUser();
   const addPicture = (event) => {
    
@@ -22,10 +23,15 @@ export default function CreatePost() {
   const response= await api.imageUpload(imageUrl,  [`*`],
   [`user:${user["$id"]}`]);
   const imageURL=await api.imageView(response["$id"])
+
+
   const data = {
     user_name:user.name,
     image:imageURL.href,
     user_picture:user.prefs.user_picture,
+    user_id:user["$id"],
+    image_placeholder:imageURL.href,
+    time:new Date(),
   };
   const postresponse=await api.createPost(Server.collectionID,data,
   [`*`],
