@@ -18,6 +18,7 @@ export const getServerSideProps=async(context)=>{
   if(id==undefined){
     return{
       props:{openPost:{
+        type:"post",
         image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
         titile:"liiighthouse",
         description:"speek freely",
@@ -37,6 +38,7 @@ export const getServerSideProps=async(context)=>{
 
   return{
     props:{openPost:{
+      type:"post",
       image: data.data.image,
       titile:data.data.titile,
       description:data.data.description

@@ -7,7 +7,7 @@ export default function openGraph({metaData}) {
 {console.log("metaData",metaData)}
 <NextSeo
       openGraph={{
-        type: 'website',
+        type: metaData.type ? metaData.type : "website",
         url: metaData.url ? metaData.url : "https://dev.liiighthouse.net/",
         title: metaData.title ? metaData.title :"liiighthouse",
         description: metaData.description ? metaData.description : "",

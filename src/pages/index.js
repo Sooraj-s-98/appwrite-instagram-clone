@@ -191,7 +191,40 @@ export default Index;
 
 export const getServerSideProps=async(context)=>{
 
+  const playlistId=context.watchlistid;
   const id = context.query.id
+  const  resPlayListRes= await fetch(`https://dev-video.liiighthouse.net/api/userApi/playlists/view?playlist_id=${playlistId}`, {
+    method: 'POST',
+
+  });
+ 
+  const resPlayListResData=await resPlayListRes.json();
+  console.log("resPlayListData",resPlayListResData)
+  if(resPlayListResData.sucess==true){
+    
+  return{
+    props:{openPost:{
+      image:resPlayListResData.data.picture,
+      titile:resPlayListResData.data.title,
+      description:`${resPlayListResData.data.playlist_videos_count} videos`,
+      url:"https://dev.liiighthouse.net/"
+    }}
+  }
+  }
+
+  else{ 
+  return{
+    props:{openPost:{
+      image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
+      titile:"liiighthouse",
+      description:"speek freely",
+      url:"https://dev.liiighthouse.net/"
+    }}
+  }
+
+  }
+
+
   console.log("id",id)
   if(id==undefined){
     return{
