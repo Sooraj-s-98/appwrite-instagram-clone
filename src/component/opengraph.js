@@ -13,7 +13,7 @@ export default function openGraph({metaData}) {
         description: metaData.description ? metaData.description : "",
         images: [
           {
-            url: metaData.image? metaData.image: "https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
+            url: metaData.image? metaData.image: "https://source.unsplash.com/llkVQVjns80/800x450",
             width: 800,
             height: 600,
             alt: 'Og Image Alt',

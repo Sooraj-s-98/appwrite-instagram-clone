@@ -19,7 +19,7 @@ export const getServerSideProps=async(context)=>{
     return{
       props:{openPost:{
         type:"post",
-        image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
+        image:"https://source.unsplash.com/llkVQVjns80/800x450",
         title:"liiighthouse",
         description:"speek freely",
         url:"https://dev.liiighthouse.net/"
