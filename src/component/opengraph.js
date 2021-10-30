@@ -2,17 +2,17 @@ import React from 'react'
 import { NextSeo } from 'next-seo'
 
 
-export default function openGraph() {
+export default function openGraph({metaData}) {
     return (
         <NextSeo
  
         openGraph={{
           url: "",
-          title: "title",
+          title: metaData.title,
           description: "description",
           images: [
             {
-              url: "",
+              url: metaData.image,
               width: 800,
               height: 600,
               alt: 'Default video',
