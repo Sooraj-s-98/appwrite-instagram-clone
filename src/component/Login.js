@@ -1,19 +1,43 @@
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
+import api from "../api/api";
+import SignUp from "./Signup";
+import { FetchState } from "../hooks/index";
 
+const Login = ({ dispatch }) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [register, setRegister] = useState(false);
 
-export default function Login() {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    dispatch({ type: FetchState.FETCH_INIT });
+    try {
+      await api.createSession(email, password);
+      const data = await api.getAccount();
+      dispatch({ type: FetchState.FETCH_SUCCESS, payload: data });
+    } catch (e) {
+      dispatch({ type: FetchState.FETCH_FAILURE });
+    }
+  };
 
-  return (
+  return register ? (
+    <SignUp setRegister={setRegister} dispatch={dispatch} />
+  ) : (
+      <>
+
+    <div className="main-top" style={{width:"700px"}}>
+      
     <div className="login__container">
       <h1>Instagram Clone</h1>
       <div className="form__area">
         <div className="form">
-          <form >
+          <form onSubmit={handleLogin}>
             <div className="form__field">
               <input
                 type="email"
                 id="Email"
                 name="Email"
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <label htmlFor="Email">Email</label>
@@ -23,6 +47,7 @@ export default function Login() {
                 type="password"
                 id="password"
                 name="Password"
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <label htmlFor="Password">Password</label>
@@ -42,10 +67,14 @@ export default function Login() {
         </div>
         <div className="signup__area">
           <p>
-            Don't have and account? <a to="/signup">Signup</a>
+            Don't have and account? <a  onClick={()=>setRegister(true)}>Signup</a>
           </p>
         </div>
       </div>
     </div>
+    </div>
+    </>
   );
 }
+
+export default Login;

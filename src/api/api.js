@@ -1,4 +1,5 @@
 import { Appwrite } from 'appwrite';
+import { Server } from "../utils/config";
 
 let api = {
   sdk: null,
@@ -8,9 +9,7 @@ let api = {
       return api.sdk;
     }
     let appwrite = new Appwrite();
-    appwrite
-      .setEndpoint(process.env.REACT_APP_ENDPOINT)
-      .setProject(process.env.project);
+    appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
     api.sdk = appwrite;
     return appwrite;
   },
@@ -21,6 +20,10 @@ let api = {
 
   getAccount: () => {
     return api.provider().account.get();
+  },
+
+  UpdateAccount: (data) => {
+    return api.provider().account.updatePrefs(data);
   },
 
   createSession: (email, password) => {
@@ -46,7 +49,28 @@ let api = {
       .provider()
       .database.updateDocument(collectionId, documentId, data, read, write);
   },
-
+  imageUpload: (image,read,write) => {
+    return api
+      .provider()
+      .storage.createFile(image,read,write);   
+  },
+  imageView: (fileID) => {
+    return api
+      .provider()
+      .storage.getFileView(fileID);  
+  },
+  createPost: (collectionId,data,read, write) => {
+    return api
+      .provider()
+      .database.createDocument(collectionId, data,read,write);  
+  },
+  // [`user:${user["$id"]}`],
+  // [`user:${user["$id"]}`]
+ //createDocument('[COLLECTION_ID]', {});
+  //listDocuments('[COLLECTION_ID]');
+  listPosts: (collectionId, filters=[],limit=10, offset=0) => {
+    return api.provider().database.listDocuments(collectionId, filters,limit, offset);
+  },
   deleteDocument: (collectionId, documentId) => {
     return api.provider().database.deleteDocument(collectionId, documentId);
   },

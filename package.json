@@ -6,6 +6,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "prod_start": "NODE_ENV=production node server.js",
     "lint-staged": "npx lint-staged",
     "lint": "npx eslint ./src"
   },
@@ -13,12 +14,15 @@
     "*.js": "npx eslint --fix"
   },
   "dependencies": {
-    "appwrite": "^3.0.1",
     "@material-ui/core": "^4.10.2",
-    "next": "^9.4.4",
+    "appwrite": "^3.0.1",
+    "next": "^10.1",
+    "next-seo": "^4.28.1",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.4",
+    "react-dom": "^17.0.2",
+    "react-infinite-scroll-component": "^6.1.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
