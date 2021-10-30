@@ -5,7 +5,7 @@ export default function post({openPost}) {
     return (
         <div>
         {console.log("openPost", openPost)}
-            <OpenGraph metaData={{titile:openPost.description,image:openPost.image}} />
+            <OpenGraph metaData={{titile:openPost.description,image:openPost.image==null || openPost.image=="null"  ? openPost.video.default_image:openPost.image}} />
             
             test post
         </div>
@@ -13,7 +13,9 @@ export default function post({openPost}) {
 }
 
 export const getServerSideProps=async(context)=>{
+
   const id = context.query.id
+  console.log("id",id)
   const  res= await fetch(`https://dev-social.liiighthouse.net/api/userApi/view_post?post_id=${id}`, {
     method: 'POST',
     headers: {
@@ -24,7 +26,7 @@ export const getServerSideProps=async(context)=>{
   const data=await res.json();
 
   return{
-    props:{openPost:data}
+    props:{openPost:data.data}
   }
 
 }

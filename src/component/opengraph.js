@@ -1,27 +1,32 @@
 import React from 'react'
 import { NextSeo } from 'next-seo'
 
-
 export default function openGraph({metaData}) {
     return (
-        <NextSeo
- 
-        openGraph={{
-          url: "",
-          title: metaData.title,
-          description: "description",
-          images: [
-            {
-              url: metaData.image,
-              width: 800,
-              height: 600,
-              alt: 'Default video',
-            },
-           
-          ],
-          site_name: 'insta',
-        }}
-   
-      />
+<>
+{console.log("metaData",metaData)}
+<NextSeo
+      openGraph={{
+        type: 'website',
+        url: 'https://www.example.com/page',
+        title: 'Open Graph Title',
+        description: 'Open Graph Description',
+        images: [
+          {
+            url: 'https://www.example.ie/og-image.jpg',
+            width: 800,
+            height: 600,
+            alt: 'Og Image Alt',
+          },
+          {
+            url: 'https://www.example.ie/og-image-2.jpg',
+            width: 800,
+            height: 600,
+            alt: 'Og Image Alt 2',
+          },
+        ],
+      }}
+    />
+</>
     )
 }
