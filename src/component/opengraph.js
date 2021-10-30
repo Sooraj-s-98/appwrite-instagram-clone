@@ -6,9 +6,10 @@ export default function openGraph({metaData}) {
 <>
 {console.log("metaData",metaData)}
 <NextSeo
+   title={ metaData.title ? metaData.title :"liiighthouse"}
       openGraph={{
         type:"website",
-        url: metaData.url ? metaData.url : "https://dev.liiighthouse.net/",
+        url: metaData.url!==undefined ? metaData.url : "https://dev.liiighthouse.net/",
         title: metaData.title ? metaData.title :"liiighthouse",
         description: metaData.description ? metaData.description : "",
         images: [
@@ -19,6 +20,7 @@ export default function openGraph({metaData}) {
             alt: 'Og Image Alt',
           }
         ],
+        site_name: 'liiighthouse',
       }}
     />
 </>

@@ -47,7 +47,7 @@ const Index = ({openPost}) => {
   }
   return (
     <>
-            {/* <OpenGraph metaData={openPost} /> */}
+            <OpenGraph metaData={openPost} />
 
       {tab=="home" &&
       <div className="main-top">
@@ -189,69 +189,173 @@ export default Index;
 
 
 
-// export const getServerSideProps=async(context)=>{
+export const getServerSideProps = async (context) => {
+  const playlistid = context.query.playlist;
+  const watchlistid = context.query.watchlistid;
+  const id = context.query.id;
+  const type = context.query.type;
+  console.log("playlistid", playlistid)
+  console.log("watchlistid", watchlistid);
+  console.log("id", id);
+  console.log("type", type);
+  console.log("watchlistid!=undefined ", watchlistid != undefined)
+  if (watchlistid !== undefined && playlistid === undefined && id === undefined && type === undefined) {
+    const resWatchlistRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/playlists/view?playlist_id=${watchlistid}`, {
+      method: 'POST',
 
-//   const playlistId=context.watchlistid;
-//   const id = context.query.id
-//   const  resPlayListRes= await fetch(`https://dev-video.liiighthouse.net/api/userApi/playlists/view?playlist_id=${playlistId}`, {
-//     method: 'POST',
+    });
 
-//   });
- 
-//   const resPlayListResData=await resPlayListRes.json();
-//   console.log("resPlayListData",resPlayListResData)
-//   if(resPlayListResData.sucess==true){
-    
-//   return{
-//     props:{openPost:{
-//       image:resPlayListResData.data.picture,
-//       titile:resPlayListResData.data.title,
-//       description:`${resPlayListResData.data.playlist_videos_count} videos`,
-//       url:"https://dev.liiighthouse.net/"
-//     }}
-//   }
-//   }
+    const resWatchlistResData = await resWatchlistRes.json();
+    console.log("resWatchlistData", resWatchlistResData)
+    if (resWatchlistResData.success == true) {
 
-//   else{ 
-//   return{
-//     props:{openPost:{
-//       image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
-//       titile:"liiighthouse",
-//       description:"speek freely",
-//       url:"https://dev.liiighthouse.net/"
-//     }}
-//   }
+      return {
+        props: {
+          openPost: {
+            image: resWatchlistResData.data.picture,
+            titile: resWatchlistResData.data.title,
+            description: `${resWatchlistResData.data.playlist_videos_count} videos`,
+            url: "https://dev.liiighthouse.net/"
+          }
+        }
+      }
+    }
 
-//   }
+    else {
+      return {
+        props: {
+          openPost: {
+            image: "https://source.unsplash.com/llkVQVjns80/800x450",
+            titile: "liiighthouse",
+            description: "speek freely",
+            url: "https://dev.liiighthouse.net/"
+          }
+        }
+      }
+
+    }
+  }
+  else if (watchlistid === undefined && playlistid !== undefined && id === undefined && type === undefined) {
+
+    const resPlayListRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/playlist_view?playlist_id=${playlistid}`, {
+      method: 'POST',
+
+    });
+
+    const resPlayListResData = await resPlayListRes.json();
+    console.log("resPlayListData", resPlayListResData)
+    if (resPlayListResData.success == true) {
+
+      return {
+        props: {
+          openPost: {
+            image: resPlayListResData.data.picture,
+            titile: resPlayListResData.data.title,
+            description: `${resPlayListResData.data.playlist_videos_count} videos`,
+            url: "https://dev.liiighthouse.net/"
+          }
+        }
+      }
+    }
+
+    else {
+      return {
+        props: {
+          openPost: {
+            image: "https://source.unsplash.com/llkVQVjns80/800x450",
+            titile: "liiighthouse",
+            description: "speek freely",
+            url: "https://dev.liiighthouse.net/"
+          }
+        }
+      }
+
+    }
+
+  }
+  //https://dev-video.liiighthouse.net/api/userApi/v5/channels_view?channel_id=23&view_type=1
 
 
-//   console.log("id",id)
-//   if(id==undefined){
-//     return{
-//       props:{openPost:{
-//         image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
-//         titile:"liiighthouse",
-//         description:"speek freely",
-//         url:"https://dev.liiighthouse.net/"
-//       }}
-//     }
-//   }
-//   const  res= await fetch(`https://dev-social.liiighthouse.net/api/userApi/view_post?post_id=${id}`, {
-//     method: 'POST',
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json'
-//     },
-//   });
-//   const data=await res.json();
+  else if (watchlistid === undefined && playlistid === undefined && id !== undefined && type != undefined) {
 
-//   return{
-//     props:{openPost:{
-//       image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
-//       titile:"liiighthouse",
-//       description:"speek freely",
-//       url:"https://dev.liiighthouse.net/"
-//     }}
-//   }
 
-// }
+
+    if (type === "channel") {
+      const resChannelRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/v5/channels_view?channel_id=${id}&view_type=1`, {
+        method: 'POST',
+
+      });
+
+      const resChannelResData = await resChannelRes.json();
+      console.log("resChannelData", resChannelResData)
+      if (resChannelResData.success == true) {
+
+        return {
+          props: {
+            openPost: {
+              image: resChannelResData.data.details.channel_image,
+              titile: resChannelResData.data.details.channel_name,
+              description: resChannelResData.data.details.description,
+              url: "https://dev.liiighthouse.net/"
+            }
+          }
+        }
+      }
+
+      else {
+        return {
+          props: {
+            openPost: {
+              image: "https://source.unsplash.com/llkVQVjns80/800x450",
+              titile: "liiighthouse",
+              description: "speek freely",
+              url: "https://dev.liiighthouse.net/"
+            }
+          }
+        }
+
+      }
+    }
+    else if(type === "profile"){
+
+    }
+    else if(type === "page"){
+      
+    }
+    else if(type === "store"){
+      
+    }
+    else if(type === "group"){
+      
+    }
+    else{
+      return {
+        props: {
+          openPost: {
+            image: "https://source.unsplash.com/llkVQVjns80/800x450",
+            titile: "liiighthouse",
+            description: "speek freely",
+            url: "https://dev.liiighthouse.net/"
+          }
+        }
+      }
+
+    }
+
+  }
+
+  else {
+    return {
+      props: {
+        openPost: {
+          image: "https://source.unsplash.com/llkVQVjns80/800x450",
+          titile: "liiighthouse",
+          description: "speek freely",
+          url: "https://dev.liiighthouse.net/"
+        }
+      }
+    }
+  }
+
+
+}
