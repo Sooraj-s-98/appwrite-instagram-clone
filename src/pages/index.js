@@ -7,8 +7,9 @@ import CreatePost from '../component/createpost';
 import api from "../api/api";
 import { Server } from "../utils/config";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import OpenGraph from 'src/component/opengraph'
 
-const Index = () => {
+const Index = ({openPost}) => {
 
 
   const [{ user, isLoading, isError }, dispatch] = useGetUser();
@@ -46,7 +47,7 @@ const Index = () => {
   }
   return (
     <>
-
+            <OpenGraph metaData={{titile:openPost.description,image:openPost.image}} />
 
       {tab=="home" &&
       <div className="main-top">
@@ -185,3 +186,39 @@ const Index = () => {
 };
 
 export default Index;
+
+
+
+export const getServerSideProps=async(context)=>{
+
+  const id = context.query.id
+  console.log("id",id)
+  if(id==undefined){
+    return{
+      props:{openPost:{
+        image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
+        titile:"liiighthouse",
+        description:"speek freely",
+        url:"https://dev.liiighthouse.net/"
+      }}
+    }
+  }
+  const  res= await fetch(`https://dev-social.liiighthouse.net/api/userApi/view_post?post_id=${id}`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  });
+  const data=await res.json();
+
+  return{
+    props:{openPost:{
+      image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
+      titile:"liiighthouse",
+      description:"speek freely",
+      url:"https://dev.liiighthouse.net/"
+    }}
+  }
+
+}
