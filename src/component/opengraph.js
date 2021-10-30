@@ -2,26 +2,24 @@ import React from 'react'
 import { NextSeo } from 'next-seo'
 
 
-export default function openGraph({metaData}) {
+export default function openGraph() {
     return (
         <NextSeo
-        title={metaData?.title}
-        description={metaData?.description}
-        canonical={metaData?.embed_link}
+ 
         openGraph={{
-          url: metaData?.url,
-          title: metaData?.title,
-          description: metaData?.description,
+          url: "",
+          title: "title",
+          description: "description",
           images: [
             {
-              url: metaData?.image,
+              url: "",
               width: 800,
               height: 600,
               alt: 'Default video',
             },
            
           ],
-          site_name: 'Liiighthouse',
+          site_name: 'insta',
         }}
    
       />
