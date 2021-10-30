@@ -20,7 +20,7 @@ export const getServerSideProps=async(context)=>{
       props:{openPost:{
         type:"post",
         image:"https://dev.liiighthouse.net/images/icons/logo_liiighthouse.svg",
-        titile:"liiighthouse",
+        title:"liiighthouse",
         description:"speek freely",
         url:"https://dev.liiighthouse.net/"
       }}
@@ -35,12 +35,12 @@ export const getServerSideProps=async(context)=>{
     },
   });
   const data=await res.json();
-
+   console.log("data",data)
   return{
     props:{openPost:{
       type:"post",
-      image: data.data.image,
-      titile:data.data.titile,
+      image: data.data.image=="null" ?data.data.video.default_image :data.data.image,
+      title:data.data.title,
       description:data.data.description
     }}
   }
