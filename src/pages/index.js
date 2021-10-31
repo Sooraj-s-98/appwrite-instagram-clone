@@ -190,7 +190,7 @@ export default Index;
 
 
 export const getServerSideProps = async (context) => {
-  const defaultOpenData={
+  const defaultOpenData = {
     image: "https://source.unsplash.com/llkVQVjns80/800x450",
     titile: "liiighthouse",
     description: "speek freely",
@@ -230,7 +230,7 @@ export const getServerSideProps = async (context) => {
 
     }
   }
-  else if (watchlistid === undefined && playlistid !== undefined && id === undefined && type === undefined  && watchlistid !== "" && playlistid !== "" && id !== "" && type !== "") {
+  else if (watchlistid === undefined && playlistid !== undefined && id === undefined && type === undefined && watchlistid !== "" && playlistid !== "" && id !== "" && type !== "") {
 
     const resPlayListRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/playlist_view?playlist_id=${playlistid}`, {
       method: 'POST',
@@ -255,7 +255,7 @@ export const getServerSideProps = async (context) => {
     else {
       return {
         props: {
-          openPost:defaultOpenData
+          openPost: defaultOpenData
         }
       }
 
@@ -265,25 +265,25 @@ export const getServerSideProps = async (context) => {
 
 
 
-  else if (watchlistid === undefined && playlistid === undefined && id !== undefined && type != undefined  && watchlistid !== "" && playlistid !== "" && id !== "" && type !== "") {
+  else if (watchlistid === undefined && playlistid === undefined && id !== undefined && type != undefined && watchlistid !== "" && playlistid !== "" && id !== "" && type !== "") {
 
 
 
     if (type === "channel") {
-      const resChannelRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/v5/channels_view?channel_id=${id}&view_type=1`, {
-        method: 'POST',
+      const resChannelRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/commondetails?type=channel&id=${id}`, {
+        method: 'GET',
 
       });
 
       const resChannelResData = await resChannelRes.json();
-      if (resChannelResData.success == true) {
+      if (resChannelResData.success == true && resChannelResData.channel!==null) {
 
         return {
           props: {
             openPost: {
-              image: resChannelResData.data.details.channel_image,
-              titile: resChannelResData.data.details.channel_name,
-              description: resChannelResData.data.details.description,
+              image: resChannelResData.channel.picture,
+              titile: resChannelResData.channel.name,
+              description: resChannelResData.channel.description,
               url: "https://dev.liiighthouse.net/"
             }
           }
@@ -299,19 +299,127 @@ export const getServerSideProps = async (context) => {
 
       }
     }
-    else if(type === "profile"){
+    else if (type === "profile") {
+      const resProfileRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/commondetails?type=profile&id=${id}`, {
+        method: 'GET',
 
+      });
+
+      const resProfileResData = await resProfileRes.json();
+      if (resProfileResData.success == true && resProfileResData.profile!==null) {
+
+        return {
+          props: {
+            openPost: {
+              image: resProfileResData.profile.picture,
+              titile: resProfileResData.profile.name,
+              description: resProfileResData.profile.description,
+              url: "https://dev.liiighthouse.net/"
+            }
+          }
+        }
+      }
+
+      else {
+        return {
+          props: {
+            openPost: defaultOpenData
+          }
+        }
+
+      }
     }
-    else if(type === "page"){
-      
+    else if (type === "page") {
+      const resPageRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/commondetails?type=page&id=${id}`, {
+        method: 'GET',
+
+      });
+
+      const resPageResData = await resPageRes.json();
+      if (resPageResData.success == true && resPageResData!==null) {
+
+        return {
+          props: {
+            openPost: {
+              image: resPageResData.page.picture,
+              titile: resPageResData.page.page_name,
+              description: resPageResData.page.about,
+              url: "https://dev.liiighthouse.net/"
+            }
+          }
+        }
+      }
+
+      else {
+        return {
+          props: {
+            openPost: defaultOpenData
+          }
+        }
+
+      }
     }
-    else if(type === "store"){
-      
+    else if (type === "store") {
+      const resStoreRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/commondetails?type=store&id=${id}`, {
+        method: 'GET',
+
+      });
+
+      const resStoreResData = await resStoreRes.json();
+      if (resStoreResData.success == true && resStoreResData.store!==null ) {
+
+        return {
+          props: {
+            openPost: {
+              image: resStoreResData.store.image,
+              titile: resStoreResData.store.storename,
+              description: resStoreResData.store.about,
+              url: "https://dev.liiighthouse.net/"
+            }
+          }
+        }
+      }
+
+      else {
+        return {
+          props: {
+            openPost: defaultOpenData
+          }
+        }
+
+      }
     }
-    else if(type === "group"){
-      
+    else if (type === "group") {
+      const resGroupRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/commondetails?type=group&id=${id}`, {
+        method: 'GET',
+
+      });
+
+      const resGroupResData = await resGroupRes.json();
+      if (resGroupResData.success == true && resGroupResData.group!==null) {
+
+        return {
+          props: {
+            openPost: {
+              image: resGroupResData.group.image,
+              titile: resGroupResData.group.name,
+              description: resGroupResData.group.description,
+              url: "https://dev.liiighthouse.net/"
+            }
+          }
+        }
+      }
+
+      else {
+        return {
+          props: {
+            openPost: defaultOpenData
+          }
+        }
+
+      }
     }
-    else{
+    else {
       return {
         props: {
           openPost: defaultOpenData
