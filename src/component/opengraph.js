@@ -6,15 +6,15 @@ export default function openGraph({metaData}) {
 <>
 {console.log("metaData",metaData)}
 <NextSeo
-   title={ metaData.title ? metaData.title :"liiighthouse"}
+   title={  ( metaData.title!=null && metaData.title!=undefined && metaData.title!="" && metaData.title!="null" ) ? metaData.title :"liiighthouse"}
       openGraph={{
         type:"website",
         url: metaData.url!==undefined ? metaData.url : "https://dev.liiighthouse.net/",
-        title: metaData.title ? metaData.title :"liiighthouse",
-        description: metaData.description ? metaData.description : "",
+        title:  ( metaData.title!=null && metaData.title!=undefined && metaData.title!="" && metaData.title!="null" ) ? metaData.title :"liiighthouse",
+        description:  ( metaData.description!=null && metaData.description!=undefined && metaData.description!="" && metaData.description!="null" )? metaData.description : "",
         images: [
           {
-            url: metaData.image? metaData.image: "https://source.unsplash.com/llkVQVjns80/800x450",
+            url:( metaData.image!=null && metaData.image!=undefined && metaData.image!="" && metaData.image!="null" )? metaData.image: "https://source.unsplash.com/llkVQVjns80/800x450",
             width: 800,
             height: 600,
             alt: 'Og Image Alt',

@@ -190,23 +190,23 @@ export default Index;
 
 
 export const getServerSideProps = async (context) => {
+  const defaultOpenData={
+    image: "https://source.unsplash.com/llkVQVjns80/800x450",
+    titile: "liiighthouse",
+    description: "speek freely",
+    url: "https://dev.liiighthouse.net/"
+  }
   const playlistid = context.query.playlist;
   const watchlistid = context.query.watchlistid;
   const id = context.query.id;
   const type = context.query.type;
-  console.log("playlistid", playlistid)
-  console.log("watchlistid", watchlistid);
-  console.log("id", id);
-  console.log("type", type);
-  console.log("watchlistid!=undefined ", watchlistid != undefined)
-  if (watchlistid !== undefined && playlistid === undefined && id === undefined && type === undefined) {
+  if (watchlistid !== undefined && playlistid === undefined && id === undefined && type === undefined && watchlistid !== "" && playlistid !== "" && id !== "" && type !== "") {
     const resWatchlistRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/playlists/view?playlist_id=${watchlistid}`, {
       method: 'POST',
 
     });
 
     const resWatchlistResData = await resWatchlistRes.json();
-    console.log("resWatchlistData", resWatchlistResData)
     if (resWatchlistResData.success == true) {
 
       return {
@@ -224,18 +224,13 @@ export const getServerSideProps = async (context) => {
     else {
       return {
         props: {
-          openPost: {
-            image: "https://source.unsplash.com/llkVQVjns80/800x450",
-            titile: "liiighthouse",
-            description: "speek freely",
-            url: "https://dev.liiighthouse.net/"
-          }
+          openPost: defaultOpenData
         }
       }
 
     }
   }
-  else if (watchlistid === undefined && playlistid !== undefined && id === undefined && type === undefined) {
+  else if (watchlistid === undefined && playlistid !== undefined && id === undefined && type === undefined  && watchlistid !== "" && playlistid !== "" && id !== "" && type !== "") {
 
     const resPlayListRes = await fetch(`https://dev-video.liiighthouse.net/api/userApi/playlist_view?playlist_id=${playlistid}`, {
       method: 'POST',
@@ -243,15 +238,14 @@ export const getServerSideProps = async (context) => {
     });
 
     const resPlayListResData = await resPlayListRes.json();
-    console.log("resPlayListData", resPlayListResData)
     if (resPlayListResData.success == true) {
 
       return {
         props: {
           openPost: {
-            image: resPlayListResData.data.picture,
-            titile: resPlayListResData.data.title,
-            description: `${resPlayListResData.data.playlist_videos_count} videos`,
+            image: resPlayListResData.playlist.image,
+            titile: resPlayListResData.playlist.playlist_name,
+            description: resPlayListResData.playlist.playlist_name,
             url: "https://dev.liiighthouse.net/"
           }
         }
@@ -261,22 +255,17 @@ export const getServerSideProps = async (context) => {
     else {
       return {
         props: {
-          openPost: {
-            image: "https://source.unsplash.com/llkVQVjns80/800x450",
-            titile: "liiighthouse",
-            description: "speek freely",
-            url: "https://dev.liiighthouse.net/"
-          }
+          openPost:defaultOpenData
         }
       }
 
     }
 
   }
-  //https://dev-video.liiighthouse.net/api/userApi/v5/channels_view?channel_id=23&view_type=1
 
 
-  else if (watchlistid === undefined && playlistid === undefined && id !== undefined && type != undefined) {
+
+  else if (watchlistid === undefined && playlistid === undefined && id !== undefined && type != undefined  && watchlistid !== "" && playlistid !== "" && id !== "" && type !== "") {
 
 
 
@@ -287,7 +276,6 @@ export const getServerSideProps = async (context) => {
       });
 
       const resChannelResData = await resChannelRes.json();
-      console.log("resChannelData", resChannelResData)
       if (resChannelResData.success == true) {
 
         return {
@@ -305,12 +293,7 @@ export const getServerSideProps = async (context) => {
       else {
         return {
           props: {
-            openPost: {
-              image: "https://source.unsplash.com/llkVQVjns80/800x450",
-              titile: "liiighthouse",
-              description: "speek freely",
-              url: "https://dev.liiighthouse.net/"
-            }
+            openPost: defaultOpenData
           }
         }
 
@@ -331,12 +314,7 @@ export const getServerSideProps = async (context) => {
     else{
       return {
         props: {
-          openPost: {
-            image: "https://source.unsplash.com/llkVQVjns80/800x450",
-            titile: "liiighthouse",
-            description: "speek freely",
-            url: "https://dev.liiighthouse.net/"
-          }
+          openPost: defaultOpenData
         }
       }
 
@@ -347,12 +325,7 @@ export const getServerSideProps = async (context) => {
   else {
     return {
       props: {
-        openPost: {
-          image: "https://source.unsplash.com/llkVQVjns80/800x450",
-          titile: "liiighthouse",
-          description: "speek freely",
-          url: "https://dev.liiighthouse.net/"
-        }
+        openPost: defaultOpenData
       }
     }
   }

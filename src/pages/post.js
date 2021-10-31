@@ -39,7 +39,7 @@ export const getServerSideProps=async(context)=>{
   return{
     props:{openPost:{
       type:"post",
-      image: data.data.image=="null" ?data.data.video.default_image :data.data.image,
+      image: (data.data.image!==null && data.data.image!=="null" && data.data.image !==undefined) ? data.data.image :  data.data.video!==null && data.data.video!==undefined ? data.data.video.default_image : null,
       title:data.data.title,
       description:data.data.description
     }}
