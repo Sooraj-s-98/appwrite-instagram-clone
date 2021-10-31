@@ -276,7 +276,7 @@ export const getServerSideProps = async (context) => {
       });
 
       const resChannelResData = await resChannelRes.json();
-      if (resChannelResData.success == true && resChannelResData.channel!==null) {
+      if (resChannelResData.success == true && resChannelResData.channel !== null) {
 
         return {
           props: {
@@ -306,7 +306,7 @@ export const getServerSideProps = async (context) => {
       });
 
       const resProfileResData = await resProfileRes.json();
-      if (resProfileResData.success == true && resProfileResData.profile!==null) {
+      if (resProfileResData.success == true && resProfileResData.profile !== null) {
 
         return {
           props: {
@@ -336,7 +336,7 @@ export const getServerSideProps = async (context) => {
       });
 
       const resPageResData = await resPageRes.json();
-      if (resPageResData.success == true && resPageResData!==null) {
+      if (resPageResData.success == true && resPageResData !== null) {
 
         return {
           props: {
@@ -366,7 +366,7 @@ export const getServerSideProps = async (context) => {
       });
 
       const resStoreResData = await resStoreRes.json();
-      if (resStoreResData.success == true && resStoreResData.store!==null ) {
+      if (resStoreResData.success == true && resStoreResData.store !== null) {
 
         return {
           props: {
@@ -396,7 +396,7 @@ export const getServerSideProps = async (context) => {
       });
 
       const resGroupResData = await resGroupRes.json();
-      if (resGroupResData.success == true && resGroupResData.group!==null) {
+      if (resGroupResData.success == true && resGroupResData.group !== null) {
 
         return {
           props: {
