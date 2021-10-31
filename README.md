@@ -17,6 +17,16 @@ Follow our simple [Installation Guide](https://appwrite.io/docs/installation) to
 
 > Note: If you setup Appwrite on your local machine, you will need to create a public IP so that your hosted frontend can access it.
 
+## Database
+
+![screenshotPost Collection](https://user-images.githubusercontent.com/52352285/139579072-b53cb7e8-35ac-4fab-82e3-f4f079486c34.png)
+
+![screenshotPost Collection2](https://user-images.githubusercontent.com/52352285/139579079-cc2542e6-b2f5-418c-9c7e-8602f51caf09.png)
+
+![screenshot Post Collection3](https://user-images.githubusercontent.com/52352285/139579091-dbf6c21d-fc31-44ed-8842-466bf68d346a.png)
+
+![Post Collection4](https://user-images.githubusercontent.com/52352285/139579097-09935cc0-2996-43df-b0f4-d7c1c35615f5.png)
+
 
 
 
@@ -54,6 +64,3 @@ $ npm run dev
 
 
 ## Thanks
-
-Glad to see here! Show some love by [starring](https://github.com/Sooraj-s-98/appwrite-instagram-clone/) this repository. 
-
