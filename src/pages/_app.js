@@ -27,6 +27,10 @@ export default class MyApp extends App {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
             as="font"
           />
+               <script dangerouslySetInnerHTML={{__html: ` var _mtm = window._mtm = window._mtm || [];
+_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+g.async=true; g.src='https://cdn.matomo.cloud/cloudwaysappsmozilor.matomo.cloud/container_dpa8GPT4.js'; s.parentNode.insertBefore(g,s); `}} />
         </Head>
 
         <Component {...pageProps} />
